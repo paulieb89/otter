@@ -24,9 +24,12 @@ are counted by the shell, never promised by the model.
 
 ```sh
 pnpm install && pnpm build
-export ANTHROPIC_API_KEY=...   # or ANTHROPIC_BASE_URL for a gateway
+cp .env.example .env           # set ANTHROPIC_API_KEY (or ANTHROPIC_BASE_URL for a gateway)
 node packages/surface-cli/dist/main.js
 ```
+
+The CLI auto-loads `.env` from the directory you launch it in; shell-exported
+variables take precedence over the file.
 
 The agent works in your current directory: read-only tools run freely,
 anything that mutates (bash, write, edit) asks first, and every tool call,

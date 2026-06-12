@@ -11,6 +11,13 @@ const RESET = "\x1b[0m";
 
 async function main(): Promise<void> {
   const workdir = process.cwd();
+  try {
+    // Auto-load .env from the launch directory. Already-set variables win,
+    // so shell exports and --env-file still take precedence.
+    process.loadEnvFile(`${workdir}/.env`);
+  } catch {
+    // No .env file — environment variables alone are fine.
+  }
   const adapter = new AnthropicAdapter({
     model: process.env.OTTER_MODEL ?? "claude-sonnet-4-6",
     ...(process.env.ANTHROPIC_API_KEY ? { apiKey: process.env.ANTHROPIC_API_KEY } : {}),
