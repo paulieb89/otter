@@ -21,11 +21,16 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@otter/core": "workspace:*"
+    "@otter/core": "workspace:*",
+    "@otter/adapters": "workspace:*",
+    "@otter/tools-std": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.0",
     "vitest": "^3.0.0",
     "@types/node": "^22.10.0"
+  },
+  "bin": {
+    "otter": "./dist/main.js"
   }
 }
